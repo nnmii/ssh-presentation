@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Extended Secure Shell (SSH)</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;600&family=Sarabun:wght@300;400&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="container">
+
+    <!-- Slide 0 : Title -->
+    <section class="slide active">
+        <div class="content-wrapper center">
+            <p class="subtitle">Network Security & Automation</p>
+            <h1 class="main-title">Extended Secure Shell (SSH)</h1>
+            <hr class="divider">
+            <h2>Run Remote Commands</h2>
+
+            <div class="button-group">
+                <button class="btn btn-primary" onclick="goToSlide(1)">เริ่มนำเสนอ</button>
+                <button class="btn btn-outline" onclick="goToSlide(7)">สมาชิก</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 1 -->
+    <section class="slide">
+        <div class="content-wrapper">
+            <h2 class="slide-header">01 | ขอบเขตการศึกษา</h2>
+            <ul class="scope-list">
+                <li>ศึกษาหลักการทำงานพื้นฐานของ Secure Shell (SSH) ในรูปแบบ Client–Server</li>
+                <li>ศึกษาการสั่งรันคำสั่งข้ามเครื่อง (Run Remote Commands)</li>
+                <li>ศึกษากลไกการยืนยันตัวตนด้วย Public / Private Key Authentication</li>
+                <li>ศึกษาโครงสร้างและการทำงานของ SSH Protocol ในระดับแนวคิด</li>
+                <li>ทดลองใช้งาน SSH บนระบบปฏิบัติการ Linux</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Slide 2 -->
+    <section class="slide">
+        <div class="content-wrapper">
+            <h2 class="slide-header">02 | หลักการทำงานแบบ Client–Server</h2>
+            <ul>
+                <li>Client ส่งคำขอเชื่อมต่อไปยัง Server</li>
+                <li>Server ตอบรับและสร้างการเชื่อมต่อแบบเข้ารหัส</li>
+                <li>มีการตรวจสอบตัวตนก่อนเริ่มใช้งาน</li>
+                <li>เมื่อยืนยันสำเร็จจึงสามารถสั่งงานได้</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Slide 3 -->
+    <!-- Slide 3 -->
+<section class="slide">
+    <div class="content-wrapper">
+        <h2 class="slide-header">03 | โครงสร้าง SSH Protocol</h2>
+
+        <p style="margin-bottom: 25px;">
+            การทำงานของ SSH ถูกแบ่งออกเป็นขั้นตอน เพื่อให้การเชื่อมต่อมีความปลอดภัย
+            โดยจะทำงานเรียงลำดับจากการเข้ารหัส ไปจนถึงการใช้งานจริง
+        </p>
+
+        <ul>
+            <li>
+                <strong>Transport Layer</strong><br><br>
+                ทำหน้าที่สร้างการเชื่อมต่อและเข้ารหัสข้อมูล
+                เพื่อป้องกันการดักฟังระหว่าง Client และ Server
+            </li>
+
+            <li>
+                <strong>Authentication Layer</strong><br><br>
+                ตรวจสอบตัวตนของผู้ใช้งาน
+                เช่น การใช้รหัสผ่าน หรือ Public / Private Key
+            </li>
+
+            <li>
+                <strong>Connection Layer</strong><br><br>
+                จัดการการใช้งานหลังจากผ่านการยืนยันตัวตนแล้ว
+                เช่น การเปิด Shell หรือการสั่งรันคำสั่งระยะไกล
+            </li>
+        </ul>
+
+        <div class="code-block" style="margin-top: 30px; text-align: center;">
+            เข้ารหัสข้อมูล → ตรวจสอบตัวตน → เริ่มใช้งาน
+        </div>
+    </div>
+    </section>
+
+
+
+    <!-- Slide 4 -->
+<section class="slide">
+    <div class="content-wrapper">
+        <h2 class="slide-header">04 | Run Remote Commands</h2>
+
+        <p>
+            เป็นการสั่งรันคำสั่งจากเครื่อง Client ไปยังเครื่อง Server
+            โดยไม่จำเป็นต้องเข้าสู่การใช้งานแบบ Interactive Shell
+        </p>
+
+        <div class="code-block">
+            ssh user@host "uptime && df -h"
+        </div>
+
+        <ul>
+            <li>
+                <strong>ไม่ต้องเข้า Interactive Shell</strong><br><br>
+                สามารถส่งคำสั่งให้ Server ทำงานและรับผลลัพธ์กลับมาได้ทันที
+                โดยไม่ต้อง login เข้าใช้งานแบบพิมพ์คำสั่งต่อเนื่อง
+            </li>
+            <li>
+                <strong>เหมาะสำหรับ Automation และ Monitoring</strong><br><br>
+                ใช้ร่วมกับ Script เพื่อทำงานอัตโนมัติ และตรวจสอบสถานะระบบจากระยะไกล
+                เช่น CPU, Memory และพื้นที่จัดเก็บข้อมูล
+            </li>
+        </ul>
+    </div>
+    </section>
+
+
+    <!-- Slide 5 -->
+<section class="slide">
+    <div class="content-wrapper">
+        <h2 class="slide-header">05 | Public / Private Key Authentication</h2>
+
+        <p>
+            เป็นวิธีการยืนยันตัวตนของผู้ใช้งาน โดยไม่ต้องใช้รหัสผ่าน
+            แต่ใช้กุญแจคู่เพื่อเพิ่มความปลอดภัยในการเชื่อมต่อผ่าน SSH
+        </p>
+
+        <ul>
+            <li>
+                <strong>Public Key</strong><br><br>
+                ถูกจัดเก็บไว้ที่เครื่อง Server
+            </li>
+            <li>
+                <strong>Private Key</strong><br><br>
+                ถูกเก็บไว้ที่เครื่อง Client และไม่ควรเปิดเผย
+            </li>
+            <li>
+                Server จะอนุญาตการเชื่อมต่อ
+                เมื่อสามารถตรวจสอบได้ว่า Private Key ตรงกับ Public Key
+            </li>
+        </ul><br>
+
+        <div class="info-box">
+            <strong>ข้อดี</strong><br><br>
+            • ไม่ต้องส่งรหัสผ่านผ่านเครือข่าย<br>
+            • ปลอดภัยกว่าการใช้รหัสผ่าน<br>
+            • เหมาะสำหรับ Automation และการจัดการ Server ระยะไกล
+        </div>
+    </div>
+    </section>
+
+
+
+    <!-- Slide 6 -->
+    <section class="slide">
+    <div class="content-wrapper">
+        <h2 class="slide-header">06 | การทดลองบนระบบ Linux</h2>
+        
+        <div class="lab-grid">
+            <div class="lab-item">
+                <span class="step-num">01</span>
+                <div class="lab-desc">
+                    <strong>ติดตั้ง SSH Server</strong>
+                    <p>อัปเดตระบบและติดตั้ง OpenSSH เพื่อเปิดการเชื่อมต่อ</p>
+                </div>
+                <div class="code-terminal">sudo apt install openssh-server</div>
+            </div>
+
+            <div class="lab-item">
+                <span class="step-num">02</span>
+                <div class="lab-desc">
+                    <strong>สร้าง SSH Key Pair</strong>
+                    <p>สร้างกุญแจเข้ารหัส (RSA) สำหรับเครื่อง Client</p>
+                </div>
+                <div class="code-terminal">ssh-keygen -t rsa</div>
+            </div>
+
+            <div class="lab-item">
+                <span class="step-num">03</span>
+                <div class="lab-desc">
+                    <strong>ส่งกุญแจไปยัง Server</strong>
+                    <p>คัดลอก Public Key เพื่อใช้ยืนยันตัวตนแบบไร้รหัสผ่าน</p>
+                </div>
+                <div class="code-terminal">ssh-copy-id user@host</div>
+            </div>
+        </div>
+    </div>
+    </section>
+
+    <!-- Slide 7 -->
+    <section class="slide">
+    <div class="content-wrapper center">
+        <h2 class="slide-header">รายชื่อสมาชิก</h2>
+        <div style="display: inline-block; text-align: left; font-family: 'Courier New', Courier, monospace; line-height: 2;">
+            <pre style="font-family: inherit;">
+1. นางสาวซาวาตี บือนีมะเร๊ะ    รหัส 6620310006
+2. นางสาวร็อยยาน สะอะ       รหัส 6620310018
+3. นางสาวรูสนี มะแซ         รหัส 6620310020
+4. นางสาวอาซียะห์ มะแห      รหัส 6620310028
+5. นางสาวนุสมี เวาะผา        รหัส 6620310139</pre>
+        </div>
+        <br><br>
+        <button class="btn btn-outline" onclick="goToSlide(0)">กลับหน้าแรก</button>
+    </div>
+    </section>
+
+</div>
+
+<!-- Navigation -->
+<div class="navigation-controls">
+    <button onclick="prevSlide()">◀ PREV</button>
+    <span id="page-number">1 / 8</span>
+    <button onclick="nextSlide()">NEXT ▶</button>
+</div>
+
+<script>
+    const slides = document.querySelectorAll('.slide');
+    const pageIndicator = document.getElementById('page-number');
+    let current = 0;
+
+    function showSlide(index) {
+        slides.forEach(slide => slide.classList.remove('active'));
+        slides[index].classList.add('active');
+        current = index;
+        pageIndicator.innerText = `${index + 1} / ${slides.length}`;
+    }
+
+    function nextSlide() {
+        if (current < slides.length - 1) showSlide(current + 1);
+    }
+
+    function prevSlide() {
+        if (current > 0) showSlide(current - 1);
+    }
+
+    function goToSlide(index) {
+        showSlide(index);
+    }
+
+    document.addEventListener('keydown', e => {
+        if (e.key === "ArrowRight") nextSlide();
+        if (e.key === "ArrowLeft") prevSlide();
+    });
+</script>
+
+</body>
+</html>
