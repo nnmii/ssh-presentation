@@ -14,7 +14,7 @@
     <!-- Slide 0 : Title -->
     <section class="slide active">
         <div class="content-wrapper center">
-            <p class="subtitle">Network Security & Automation</p>
+            <p class="subtitle">Presented by Group 7</p>
             <h1 class="main-title">Extended Secure Shell (SSH)</h1>
             <hr class="divider">
             <h2>Run Remote Commands</h2>
@@ -103,7 +103,7 @@
         </p>
 
         <div class="code-block">
-            ssh user@host "uptime && df -h"
+            ssh user@ip_sever
         </div>
 
         <ul>
@@ -179,7 +179,7 @@
                     <strong>สร้าง SSH Key Pair</strong>
                     <p>สร้างกุญแจเข้ารหัส (RSA) สำหรับเครื่อง Client</p>
                 </div>
-                <div class="code-terminal">ssh-keygen -t rsa</div>
+                <div class="code-terminal">ssh-keygen </div>
             </div>
 
             <div class="lab-item">
@@ -188,7 +188,7 @@
                     <strong>ส่งกุญแจไปยัง Server</strong>
                     <p>คัดลอก Public Key เพื่อใช้ยืนยันตัวตนแบบไร้รหัสผ่าน</p>
                 </div>
-                <div class="code-terminal">ssh-copy-id user@host</div>
+                <div class="code-terminal">ssh-copy-id user@ip_sever</div>
             </div>
         </div>
     </div>
