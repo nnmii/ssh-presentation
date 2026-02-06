@@ -192,66 +192,111 @@ ul li {
     color: #2c2a2a;
     font-weight: 300;
 }
-/* การจัดวางหน้า Lab 6 */
-.lab-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 25px;
-    margin-top: 10px;
+
+
+/* ===== Slide 6 : Client / Server (ทางการ/ชิดซ้าย/ขนาดเดิม) ===== */
+
+/* 1. ปรับหัวข้อชิดซ้าย และขนาดคงเดิมตามตัวแปรหลัก */
+.slide-header {
+    text-align: left;
+    margin-bottom: 10px; /* ลดระยะเพื่อให้เข้ากับ sub-header */
 }
 
-.lab-item {
-    display: grid;
-    grid-template-columns: 50px 1fr 1fr; /* แบ่งเลขลำดับ, คำอธิบาย, และ Code */
-    align-items: center;
-    gap: 20px;
-    padding-bottom: 20px;
-    border-bottom: 1px solid var(--line);
-}
-
-.step-num {
-    font-family: 'Prompt';
-    font-size: 1.5rem;
-    font-weight: 600;
+.sub-header {
+    text-align: left;
+    margin-top: 0; /* แก้จาก -25px เพื่อให้ไม่เกยกัน */
+    margin-bottom: 40px;
+    font-size: 1.1rem; /* ขนาดเดิมที่คุณตั้งไว้ */
     color: var(--muted);
-    opacity: 0.5;
+    border-bottom: 1px solid var(--line); /* เพิ่มเส้นคั่นบางๆ ให้ดูเป็นระเบียบ */
+    padding-bottom: 15px;
 }
 
-.lab-desc strong {
+/* 2. จัดการรูปภาพและเนื้อหาให้สะอาดตา */
+.lab-image {
+    width: 100%;
+    max-width: 800px; /* ขยายให้เห็นชัดขึ้น */
+    height: auto;
     display: block;
+    margin: 20px 0; /* จัดวางชิดซ้าย (ไม่ใช้ margin auto) */
+    border-radius: 4px;
+    border: 1px solid var(--line); /* ขอบบางๆ สีเทาอ่อน */
+}
+
+/* 3. ปรับแต่งคำอธิบาย */
+p strong {
     font-family: 'Prompt';
     font-size: 1.1rem;
     color: var(--accent);
+    display: block;
+    margin-top: 20px;
 }
 
-.lab-desc p {
-    font-size: 0.9rem;
-    color: var(--muted);
-}
-
-/* ปรับ Code ให้ดูเหมือน Terminal แต่ยังคงความคลีน */
-.code-terminal {
-    background: #fbfbfb;
-    border: 1px solid var(--line);
-    padding: 12px 20px;
-    font-family: 'Courier New', monospace;
+.img-desc {
     font-size: 0.95rem;
-    color: #444;
-    border-radius: 4px;
-    text-align: right; /* ดันคำสั่งไปทางขวาเพื่อให้ดูสมดุล */
+    color: var(--muted);
+    line-height: 1.6;
+    margin: 10px 0 20px 0;
+    font-weight: 300;
 }
 
-/* Responsive เบื้องต้น */
-@media (max-width: 768px) {
-    .lab-item {
-        grid-template-columns: 1fr;
-        gap: 10px;
-    }
-    .code-terminal {
-        text-align: left;
-    }
+/* 4. Code Block สไตล์ทางการ (อิงตาม .code-block หลักของคุณ) */
+.code-block {
+    background: #fcfcfc; /* เทาขาวสะอาดๆ */
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--accent); /* เน้นเส้นข้างให้ดูเด่น */
+    padding: 20px;
+    font-size: 1rem;
+    max-width: 700px;
+    text-align: left;
+}
+.lab-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
 }
 
+/* Header */
+.lab-table thead th {
+    font-family: 'Prompt';
+    text-align: left;
+    padding: 14px 12px;
+    border-bottom: 2px solid var(--accent);
+    color: var(--accent);
+    font-size: 0.95rem;
+    letter-spacing: 0.5px;
+}
 
+/* Body */
+.lab-table tbody td {
+    padding: 18px 12px;
+    border-bottom: 1px solid var(--line);
+    vertical-align: top;
+}
+.member-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 1rem;
+    text-align: left;
+}
 
+.member-table th {
+    font-family: 'Prompt';
+    font-weight: 600;
+    padding: 12px 10px;
+    border-bottom: 2px solid var(--accent);
+    color: var(--accent);
+    font-size: 0.95rem;
+}
 
+.member-table td {
+    padding: 14px 10px;
+    border-bottom: 1px solid var(--line);
+    vertical-align: top;
+    line-height: 1.6;
+}
+
+.member-table tbody tr:hover {
+    background: #f7f7f7;
+    transition: 0.3s;
+}
