@@ -204,7 +204,7 @@
 
             <p class="step-title">ติดตั้งและเปิดใช้งาน OpenSSH Server</p>
 
-            <img src="1.jpg" alt="Server Setup" class="lab-image">
+
 
             <p class="img-desc">ติดตั้ง OpenSSH และเปิด SSH Service เพื่อให้เครื่อง Server พร้อมรับการเชื่อมต่อ</p>
 
@@ -223,9 +223,9 @@
 
             <p class="step-title">ตรวจสอบ IP Address ของเครื่อง Server</p>
 
-            <img src="2.png" alt="ifconfig" class="lab-image">
+            <img src="1.png" alt="ifconfig" class="lab-image">
 
-            <p class="img-desc">ใช้คำสั่ง ifconfig เพื่อดู IP Address ของเครื่อง Server (ตัวอย่างคือ 172.18.114.197)</p>
+            <p class="img-desc">ใช้คำสั่ง ifconfig เพื่อดู IP Address ของเครื่อง Server (ตัวอย่างคือ 172.18.114.8)</p>
 
             <div class="code-block">
                 ifconfig
@@ -241,7 +241,7 @@
 
             <p class="step-title">สร้าง Public / Private Key สำหรับการยืนยันตัวตน</p>
 
-            <img src="3.png" alt="ssh-keygen" class="lab-image">
+            <img src="2.png" alt="ssh-keygen" class="lab-image">
 
             <p class="img-desc">คำสั่ง ssh-keygen จะสร้างคู่กุญแจเข้ารหัสเพื่อใช้สำหรับ SSH Authentication</p>
 
@@ -257,14 +257,15 @@
             <h2 class="slide-header">06.4 | ทดลองบนระบบ Linux</h2>
             <h3 class="sub-header">Client : ส่ง Public Key ไปยัง Server</h3>
 
-            <p class="step-title">คัดลอก Public Key ไปยัง Server</p>
+            <p class="step-title">ตรวจสอบPublic / Private Key ที่สร้างไว้ และคัดลอก Public Key ไปยัง Server</p>
 
+            <img src="3.png" alt="ssh-copy-id" class="lab-image">
             <img src="4.png" alt="ssh-copy-id" class="lab-image">
 
             <p class="img-desc">เพื่อให้สามารถเชื่อมต่อ SSH ได้โดยไม่ต้องใช้รหัสผ่าน</p>
 
             <div class="code-block">
-                ssh-copy-id sava@172.18.114.197
+                ssh-copy-id std-747-221@172.18.114.8
             </div>
         </div>
     </section>
@@ -282,7 +283,7 @@
             <p class="img-desc">เมื่อเชื่อมต่อสำเร็จจะสามารถสั่งงาน Server ได้ทันที</p>
 
             <div class="code-block">
-                ssh sava@172.18.114.197
+                ssh std-747-221@172.18.114.8
             </div>
         </div>
     </section>
@@ -293,17 +294,18 @@
             <h2 class="slide-header">06.6 | ทดลองบนระบบ Linux</h2>
             <h3 class="sub-header">Client : ทดลองรันคำสั่งผ่าน SSH</h3>
 
-            <p class="step-title">ตัวอย่างการสร้างโฟลเดอร์และไฟล์จากระยะไกล</p>
+            <p class="step-title">ตัวอย่างการสร้างโฟลเดอร์และไฟล์จากระยะไกล และออกจาก sever</p>
 
-            <div class="img-grid">
                 <img src="6.png" alt="mkdir testdata" class="lab-image small-img">
-                <img src="7.png" alt="touch narak.txt" class="lab-image small-img">
-            </div>
+               
 
             <div class="code-block">
-                mkdir testdata<br>
-                cd testdata<br>
-                touch narak.txt
+                mkdir testsssh<br>
+                cd testsssh<br>
+                touch data555.txt
+            </div>
+            <div class="code-block">
+                exit
             </div>
         </div>
     </section>
@@ -316,21 +318,183 @@
 
             <p class="step-title">ตรวจสอบโฟลเดอร์และไฟล์ที่สร้างขึ้น</p>
 
-            <img src="8.png" alt="ls output" class="lab-image">
+            <img src="7.png" alt="ls output" class="lab-image">
 
             <p class="img-desc">
-                จากการทดลอง เมื่อใช้คำสั่ง <strong>ls</strong> เพื่อตรวจสอบข้อมูลในระบบไฟล์
-                พบว่าโฟลเดอร์ <strong>testdata</strong> ถูกสร้างขึ้นเรียบร้อย และพบไฟล์ <strong>narak.txt</strong>
+                จากการทดลอง เมื่อใช้คำสั่ง ls เพื่อตรวจสอบข้อมูลในระบบไฟล์<br>
+                พบว่าโฟลเดอร์ testsssh ถูกสร้างขึ้นเรียบร้อย และพบไฟล์ data555.txt<br>
                 แสดงให้เห็นว่าการสั่งงานผ่าน SSH ประสบผลสำเร็จ
             </p>
 
-            <div class="code-block">
-                ls
-            </div>
         </div>
     </section>
 
     <!-- Slide 7 -->
+    <section class="slide">
+        <div class="content-wrapper center">
+            <h2 class="slide-header">07.1 | คำสั่งเพิ่มเติมที่น่าสนใจ (SCP Upload )</h2>
+            <h3 class="sub-header">Client : อัพโหลดไฟล์ไปยัง (SFTP) Remote Server</h3>
+
+            <p class="step-title">วิธีอัพโหลดไฟล์ไปยัง (SFTP) Remote Server </p>
+            <img src="8.png" alt="ls output" class="lab-image">
+            <img src="9.png" alt="ls output" class="lab-image">
+            <p class="step-title">Sever : ตรวจสอบไฟล์ที่อัพโหลดไป</p>
+            <img src="10.png" alt="ls output" class="lab-image">
+
+            <div class="code-block">
+                scp ssh777.txt <br>
+                std-747-221@172.18.114.8:/home/std-747-221/testsssh/test666.txt
+            </div>
+
+            <p class="img-desc">
+                จากการอัพโหลดไฟล์พบว่าอัพโหลดไฟล์สำเร็จ            
+            </p>
+
+        </div>
+    </section>
+
+    <!-- Slide 7.1 -->
+<!-- Slide 7 -->
+    <section class="slide">
+    <div class="content-wrapper center">
+
+        <h2 class="slide-header">
+            07.2 | คำสั่งเพิ่มเติมที่น่าสนใจ (SCP Upload)
+        </h2>
+
+        <h3 class="sub-header">
+            Client : อัพโหลดไฟล์ไปยัง (SFTP) Remote Server
+        </h3>
+
+        <p class="step-title">
+            Client : สร้างไฟล์และเข้ารหัสข้อมูล
+        </p>
+        <div class="code-block">
+            touch data1.txt <br>
+            gpg -c data1.txt
+        </div>
+
+        <p class="step-title">
+            Client : อัพโหลดไฟล์ไปยัง Remote Server ด้วย SCP
+        </p>
+        <div class="code-block">
+            scp data1.txt.gpg <br>
+            std-747-441@172.18.114.196:/home/std-747-441/
+        </div>
+
+        <p class="step-title">
+            Client : แสดงผลการอัพโหลดไฟล์
+        </p>
+        <img src="11.png" alt="SCP upload result" class="lab-image">
+
+        <p class="step-title">
+            Server : ตรวจสอบไฟล์ที่อัพโหลดไป
+        </p>
+        <div class="code-block">
+            ls
+        </div>
+
+        <img src="12.jpg" alt="Server ls output" class="lab-image">
+
+        <p class="img-desc">
+            จากการอัพโหลดไฟล์พบว่าไฟล์ <b>data1.txt.gpg</b> ถูกส่งไปยัง Remote Server สำเร็จ
+            และสามารถตรวจสอบไฟล์ได้จากฝั่ง Server
+        </p>
+
+    </div>
+</section>
+<!-- Slide 7 -->
+    <!-- Slide 7 -->
+<section class="slide">
+    <div class="content-wrapper center">
+
+        <h2 class="slide-header">
+            07.1 | คำสั่งเพิ่มเติมที่น่าสนใจ (Remote Shutdown & Reboot)
+        </h2>
+
+        <h3 class="sub-header">
+            Client : สั่งปิดเครื่อง และรีบูต Remote Server ผ่าน SSH
+        </h3>
+
+        <p class="step-title">
+            Client : สั่งปิดเครื่อง (Shutdown) Remote Server
+        </p>
+
+        <div class="code-block">
+            ssh -t std-747-441@172.18.114.199 'sudo shutdown -h now'
+        </div>
+
+        <img src="13.png" alt="Remote shutdown command result" class="lab-image">
+
+        <p class="step-title">
+            Client : สั่งรีบูต (Reboot) Remote Server
+        </p>
+
+        <div class="code-block">
+            ssh -t std-747-441@172.18.114.199 'sudo reboot'
+        </div>
+
+        <img src="14.png" alt="Remote reboot command result" class="lab-image">
+
+        <p class="img-desc">
+            จากการสั่งงานพบว่า Client สามารถสั่งปิดเครื่องและรีบูต Remote Server ได้สำเร็จ
+            โดยการเชื่อมต่อผ่าน SSH และใช้คำสั่ง sudo จากระยะไกล
+        </p>
+
+    </div>
+</section>
+
+
+
+    <section class="slide">
+        <div class="content-wrapper">
+            <h2 class="slide-header">08 | อ้างอิง (References)</h2>
+            <h3 class="sub-header">แหล่งข้อมูลประกอบการศึกษาและการทดลองปฏิบัติการ</h3>
+
+            <ul class="scope-list" style="font-size: 0.9em; line-height: 1.6;">
+
+    <li>
+        <strong>Linux — การใช้ SSH Command</strong><br>
+        ปรัชญา ยีกะเดย์, Medium<br>
+        <small>
+            <a href="https://medium.com/@pratya.yeekhaday/linux-%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B9%83%E0%B8%8A%E0%B9%89-ssh-command-6e4bac97123d" target="_blank">
+                https://medium.com/@pratya.yeekhaday/linux-การใช้-ssh-command-6e4bac97123d
+            </a>
+        </small>
+    </li>
+
+    <br>
+
+    <li>
+        <strong>Linux: Running Commands On a Remote Host</strong><br>
+        Vivek Gite, nixCraft<br>
+        <small>
+            <a href="https://www.cyberciti.biz/tips/linux-running-commands-on-a-remote-host.html" target="_blank">
+                https://www.cyberciti.biz/tips/linux-running-commands-on-a-remote-host.html
+            </a>
+        </small>
+    </li>
+
+    <br>
+
+    <li>
+        <strong>The GNU Privacy Handbook (GnuPG)</strong><br>
+        Free Software Foundation<br>
+        <small>
+            <a href="https://www.gnupg.org/gph/en/manual.html" target="_blank">
+                https://www.gnupg.org/gph/en/manual.html
+            </a>
+        </small>
+    </li>
+
+</ul>
+
+        </div>
+    </section>
+
+    
+
+    <!-- Slide member -->
     <section class="slide">
     <div class="content-wrapper center">
         <h2 class="slide-header">รายชื่อสมาชิก</h2>
@@ -378,7 +542,7 @@
                     </tr>
                 </tbody>
             </table>
-        </div>
+        </div><br>
 
         <button class="btn btn-outline" onclick="goToSlide(0)">กลับหน้าแรก</button>
     </div>
